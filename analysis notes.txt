@@ -1,0 +1,10 @@
+Tokyo weather data from 1981-2021
+
+-overall increase in yearly maximim, minimum, and average temperatures
+	-some years see a sharp decline in temperature
+		-max T (1982, 1988-1989, 1993,1999,2003,2009)
+		-highest min T (1993, 2003, 2009, 2016)
+		-
+-obseved decrease in rain and snowfall 
+	-however, some spikes in max snow cover after 2010 despite most years having low max snow cover after ~1997
+-
