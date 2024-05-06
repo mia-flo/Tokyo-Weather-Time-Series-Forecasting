@@ -5,6 +5,46 @@ Tokyo weather data from 1981-2021
 		-max T (1982, 1988-1989, 1993,1999,2003,2009)
 		-highest min T (1993, 2003, 2009, 2016)
 		-
--obseved decrease in rain and snowfall 
-	-however, some spikes in max snow cover after 2010 despite most years having low max snow cover after ~1997
--
+
+Analyzed maximum temperature data from Tokyo (1981-2021) and used the historical data to predict the daily maximum temperature for the next 3 years (2021-2024).
+
+modules used:
+
+*pandas
+-grouped maximum, average, and minimum temp by year
+-split historical data into training: 1981-01-01 to 2018-12-31 and test: 2019-01-01 to 2021-09-27 using loc
+
+
+*numpy
+
+*seaborn
+-boxplots to look at the daily range in maximum-minimum temperature by year
+-boxplots to look at daily maximum temperature grouped by year
+
+*matplotlib
+-line plots of maximum, average, and minimum temp by year
+-histogram of max temperature
+-plot validation data against predicted data
+
+*xgboost
+-used XGBRegressor to look at feature importance and forecast 3 years out from 2018-12-31 
+=base_score = 0.5
+=booster = 'gbtree'
+=n_estimators = 1000
+=objective = 'reg:squarederror'
+=max_depth = 3
+=learning_rate = 0.01
+
+-first, fit the model using only the training split to see how well it performs
+-fit the model using all of the data, assess the performance, forecast 3 years out
+
+*sklearn
+-TimeSeriesSplit cross validation (5 splits)
+
+*statistics
+
+*datetime
+
+first forecast w/ 3 lag features was 1 day, 2 years, 3 years - the model predictions was overfitting to the quarter (Jan 2021-March 2021) of validation data and forecasting anomolously and increasingly low temperatures for the next three years
+
+revised the lag features to be 1, 2, 3, 5, 10, 15 years. the predicted data generally follows the trend of the Jan 2021-March 2021 max temperature data withou the previous overfitting concerns. The forecast now shows more accurate max temperature predictions.
